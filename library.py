@@ -30,9 +30,9 @@ while True:
     choice = input("Please select an option: ")
 
     if choice == "1": # Add a library record
-        print("\nYou chose to add a new book\n")
+        print("\nYou chose to add a new library record\n")
 
-        book_title = input("Enter the book titleD: ")
+        book_title = input("Enter the book title: ")
         author = input("Enter the author: ")
         rating = input("Enter your rating out of 5*: ")
         review = input("Enter your review: ")
@@ -47,15 +47,15 @@ while True:
         home_library[book_title] = book
         save_json(home_library)
 
-        print("Student record added successfully.")
+        print("Library record added successfully.")
 
     elif choice == "2": # Search for a library record
         print("\nYou chose to search for a library record\n")
 
-        book_title = input("Enter Student ID to search: ")
+        book_title = input("Enter book title to search: ")
 
         if book_title in home_library:
-            student = home_library[book_title]
+            book = home_library[book_title]
             print("Title:", book_title["TITLE"])
             print("Author:", author["AUTHOR"])
             print("Rating:", rating["RATING"])
@@ -72,10 +72,10 @@ while True:
     elif choice == "4": # Update library record
         print("\nYou chose to update a library record\n")
 
-        book_title = input("Enter Student ID to update: ")
+        book_title = input("Enter the book title to update: ")
 
         if book_title in home_library:
-            student = home_library[book_title]
+            book = home_library[book_title]
 
             print("What would you like to update?")
             print("1. Book Title\n2. Author\n3. Rating\n4. Review")
@@ -83,16 +83,16 @@ while True:
 
             if update_choice == "1":
                 new_author_title = input("Enter your new book title: ")
-                student["TITLE"] = new_author_title
+                book["TITLE"] = new_author_title
             elif update_choice == "2":
                 new_age = input("Enter the new author: ")
-                student["AUTHOR"] = new_age
+                book["AUTHOR"] = new_age
             elif update_choice == "3":
                 new_rating = input("Enter your new rating out of 5*: ")
-                student["RATING"] = new_rating
+                book["RATING"] = new_rating
             elif update_choice == "4":
                 new_review = input("Enter your new review: ")
-                student["REVIEW"] = new_review
+                book["REVIEW"] = new_review
             else:
                 print("Invalid choice.")
 
@@ -100,7 +100,7 @@ while True:
             save_json(home_library)
             print("Library record updated successfully.")
         else:
-            print("Student ID not found. Cannot update the record.")
+            print("Library record not found. Cannot update the record.")
 
     elif choice == "5": # Delete library record
         print("\nYou chose to delete a library record\n")
