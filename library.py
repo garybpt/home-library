@@ -1,7 +1,7 @@
 import json
 import os
 
-# Function to save the home library to a JSON file
+# Function to save the home library to a JSON file in alphabetical order
 def save_json(home_library):
     sorted_home_library = dict(sorted(home_library.items()))
     with open(LIBRARY_RECORD, "w") as file:
@@ -26,7 +26,7 @@ home_library = open_json()
 
 while True:
     print("\nWelcome to your home library.\n")
-    print("1. Add a library record\n2. Search for a library record\n3. List all library records\n4. Update a library record\n5. Delete library record\n6. Exit\n")
+    print("1. Add a library record\n2. Search for a library record\n3. List all library records\n4. Update a library record\n5. Delete a library record\n6. Exit\n")
 
     choice = input("Please select an option: ")
 
@@ -35,12 +35,21 @@ while True:
 
         book_title = input("Enter the book title: ")
         author = input("Enter the author: ")
-        rating = input("Enter your rating out of 5*: ")
-        review = input("Enter your review: ")
+        genre = input("Enter the genre (fiction, non-fiction, cooking): ")
+
+        has_read = input("Have you read this book? (yes/no): ").lower()
+
+        if has_read == "yes":
+            rating = input("\nEnter your rating out of 5*: ")
+            review = input("Enter your review: ")
+        else: # Auto-fill with holding entry for not read
+            rating = "Not Read"
+            review = "Not Read"
 
         book = {
             "TITLE": book_title,
             "AUTHOR": author,
+            "GENRE": genre,
             "RATING": rating,
             "REVIEW": review
         }
@@ -48,21 +57,34 @@ while True:
         home_library[book_title] = book
         save_json(home_library)
 
-        print("Library record added successfully.")
+        print("\nLibrary record added successfully.")
 
-    elif choice == "2": # Search for a library record
+    elif choice == "2":  # Search for a library record
         print("\nYou chose to search for a library record\n")
 
-        book_title = input("Enter book title to search the library: ")
+        search_term = input("Enter book title, author, or genre to search the library: ")
 
-        if book_title in home_library:
-            book = home_library[book_title]
-            print("Title:", book["TITLE"])
-            print("Author:", book["AUTHOR"])
-            print("Rating:", book["RATING"])
-            print("Review:", book["REVIEW"])
+        found_books = []
+
+        for book_title, book in home_library.items():
+            if (
+                search_term.lower() in book_title.lower()
+                or search_term.lower() in book["AUTHOR"].lower()
+                or search_term.lower() in book["GENRE"].lower()
+            ):
+                found_books.append(book)
+
+        if found_books:
+            print("\nMatching library records found:")
+            for book in found_books:
+                print("\nTitle:", book["TITLE"])
+                print("Author:", book["AUTHOR"])
+                print("Genre:", book["GENRE"])
+                print("Rating:", book["RATING"])
+                print("Review:", book["REVIEW"])
+                print()
         else:
-            print("Library record not found.")
+            print("No matching library records found.")
 
     elif choice == "3": # List all library records
         print("\nYou chose to list all library books\n")
@@ -70,6 +92,7 @@ while True:
         for book_title, book in home_library.items():
             print(f"Book title: {book_title}")
             print(f"Author: {book['AUTHOR']}")
+            print(f"Genre: {book['GENRE']}")
             print(f"Rating: {book['RATING']}")
             print(f"Review: {book['REVIEW']}")
             print()  # Add an empty line between each book
@@ -83,7 +106,7 @@ while True:
             book = home_library[book_title]
 
             print("What would you like to update?")
-            print("1. Book Title\n2. Author\n3. Rating\n4. Review")
+            print("1. Book Title\n2. Author\n3. Genre\n4. Rating\n5. Review")
             update_choice = input("Enter your choice: ")
 
             if update_choice == "1":
@@ -93,9 +116,12 @@ while True:
                 new_age = input("Enter the new author: ")
                 book["AUTHOR"] = new_age
             elif update_choice == "3":
+                new_genre = input("Enter the new genre: ")
+                book["GENRE"] = new_genre
+            elif update_choice == "4":
                 new_rating = input("Enter your new rating out of 5*: ")
                 book["RATING"] = new_rating
-            elif update_choice == "4":
+            elif update_choice == "5":
                 new_review = input("Enter your new review: ")
                 book["REVIEW"] = new_review
             else:
