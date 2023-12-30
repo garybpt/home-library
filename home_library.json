@@ -15,6 +15,102 @@
         "TITLE": "Chimp Paradox",
         "YEAR_READ": "Not Read"
     },
+    "Complete BBQ Cook Book": {
+        "AUTHOR": "Weber",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "Complete BBQ Cook Book"
+    },
+    "Corona Courses": {
+        "AUTHOR": "Alex Byrne and Gary Butterfield",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "Corona Courses"
+    },
+    "Fast Healthy Food": {
+        "AUTHOR": "Reader's Digest",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "Fast Healthy Food"
+    },
+    "Flavour": {
+        "AUTHOR": "Ottolengi",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "Flavour"
+    },
+    "From Crook to Cook": {
+        "AUTHOR": "Snoop Dogg",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "From Crook to Cook"
+    },
+    "Get Baked": {
+        "AUTHOR": "Rich Myers",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "Get Baked"
+    },
+    "Made in India": {
+        "AUTHOR": "Meera Sodha",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "Made in India"
+    },
+    "Ministry of Food": {
+        "AUTHOR": "Jamie Oliver",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "Ministry of Food"
+    },
+    "Streets of Italia": {
+        "AUTHOR": "Love Food",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "Streets of Italia"
+    },
+    "The Curry Guy BBQ": {
+        "AUTHOR": "Dan Toombs",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "The Curry Guy BBQ"
+    },
+    "The Cycling Chef": {
+        "AUTHOR": "Alan Murchison",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "The Cycling Chef"
+    },
+    "The Hairy Dieters Go Veggie": {
+        "AUTHOR": "Si King and Dave Myers",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "The Hairy Dieters Go Veggie"
+    },
     "The Tucci Cookbook": {
         "AUTHOR": "Stanley Tucci",
         "GENRE": "Cooking",
@@ -22,5 +118,13 @@
         "REVIEW": "Not Read",
         "TITLE": "The Tucci Cookbook",
         "YEAR_READ": "Not Read"
+    },
+    "The Wagamama Cookbook": {
+        "AUTHOR": "Hugo Arnold",
+        "GENRE": "Cooking",
+        "LAST_READ": "N/A",
+        "RATING": "N/A",
+        "REVIEW": "N/A",
+        "TITLE": "The Wagamama Cookbook"
     }
 }
