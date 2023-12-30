@@ -40,9 +40,11 @@ while True:
         has_read = input("Have you read this book? (yes/no): ").lower()
 
         if has_read == "yes":
+            last_read = input("\nYear last read: ")
             rating = input("\nEnter your rating out of 5*: ")
             review = input("Enter your review: ")
         else: # Auto-fill with holding entry for not read
+            last_read = "Not Read"
             rating = "Not Read"
             review = "Not Read"
 
@@ -50,6 +52,7 @@ while True:
             "TITLE": book_title,
             "AUTHOR": author,
             "GENRE": genre,
+            "LAST_READ": last_read,
             "RATING": rating,
             "REVIEW": review
         }
@@ -62,13 +65,14 @@ while True:
     elif choice == "2":  # Search for a library record
         print("\nYou chose to search for a library record\n")
 
-        search_term = input("Enter book title, author, or genre to search the library: ")
+        search_term = input("Enter book title, author, year read, or genre (fiction, non-fiction, or cooking) to search the library: ")
 
         found_books = []
 
         for book_title, book in home_library.items():
             if (
                 search_term.lower() in book_title.lower()
+                or search_term.lower() in book["LAST_READ"].lower()
                 or search_term.lower() in book["AUTHOR"].lower()
                 or search_term.lower() in book["GENRE"].lower()
             ):
@@ -80,6 +84,7 @@ while True:
                 print("\nTitle:", book["TITLE"])
                 print("Author:", book["AUTHOR"])
                 print("Genre:", book["GENRE"])
+                print("Last Read:", book["LAST_READ"])
                 print("Rating:", book["RATING"])
                 print("Review:", book["REVIEW"])
                 print() # Add an empty line between each book
@@ -93,6 +98,7 @@ while True:
             print(f"Book title: {book_title}")
             print(f"Author: {book['AUTHOR']}")
             print(f"Genre: {book['GENRE']}")
+            print("Last Read:", book["LAST_READ"])
             print(f"Rating: {book['RATING']}")
             print(f"Review: {book['REVIEW']}")
             print() # Add an empty line between each book
@@ -106,7 +112,7 @@ while True:
             book = home_library[book_title]
 
             print("What would you like to update?")
-            print("1. Book Title\n2. Author\n3. Genre\n4. Rating\n5. Review")
+            print("1. Book Title\n2. Author\n3. Genre\n4. Last Read\n5. Rating\n6. Review")
             update_choice = input("Enter your choice: ")
 
             if update_choice == "1":
@@ -119,9 +125,12 @@ while True:
                 new_genre = input("Enter the new genre: ")
                 book["GENRE"] = new_genre
             elif update_choice == "4":
+                new_year = input("Year read: ")
+                book["LAST_READ"] = new_year
+            elif update_choice == "5":
                 new_rating = input("Enter your new rating out of 5*: ")
                 book["RATING"] = new_rating
-            elif update_choice == "5":
+            elif update_choice == "6":
                 new_review = input("Enter your new review: ")
                 book["REVIEW"] = new_review
             else:

@@ -4,20 +4,23 @@
         "GENRE": "Non-Fiction",
         "RATING": "5",
         "REVIEW": "I absolutely love this book, it's easily one of my favourites. I love that its an entertaining story, packed with facts, and has heaps on inspo to get my outside to run! Would highly recommend! ",
-        "TITLE": "Born to Run"
+        "TITLE": "Born to Run",
+        "YEAR_READ": "2021"
     },
     "Chimp Paradox": {
         "AUTHOR": "Prof. Steve Peters",
         "GENRE": "Non-Fiction",
         "RATING": "Not Read",
         "REVIEW": "Not Read",
-        "TITLE": "Chimp Paradox"
+        "TITLE": "Chimp Paradox",
+        "YEAR_READ": "Not Read"
     },
     "The Tucci Cookbook": {
         "AUTHOR": "Stanley Tucci",
         "GENRE": "Cooking",
         "RATING": "Not Read",
         "REVIEW": "Not Read",
-        "TITLE": "The Tucci Cookbook"
+        "TITLE": "The Tucci Cookbook",
+        "YEAR_READ": "Not Read"
     }
 }

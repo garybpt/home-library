@@ -38,6 +38,7 @@ intents = discord.Intents.default()
 intents.messages = True
 intents.guilds = True
 intents.reactions = True
+intents.guild_messages = True
 
 # Create the bot with intents
 bot = commands.Bot(command_prefix='/', intents=intents)
@@ -46,7 +47,7 @@ bot = commands.Bot(command_prefix='/', intents=intents)
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
 
-@bot.command()
+@bot.command(name="add_record", description="Add a new library record")
 async def add_record(ctx):
     print("\nYou chose to add a new library record\n")
 
@@ -57,9 +58,11 @@ async def add_record(ctx):
     has_read = input("Have you read this book? (yes/no): ").lower()
 
     if has_read == "yes":
+        last_read = input("Year last read: ")
         rating = input("\nEnter your rating out of 5*: ")
         review = input("Enter your review: ")
     else: # Auto-fill with holding entry for not read
+        last_read = "Not Read"
         rating = "Not Read"
         review = "Not Read"
 
@@ -67,6 +70,7 @@ async def add_record(ctx):
         "TITLE": book_title,
         "AUTHOR": author,
         "GENRE": genre,
+        "LAST_READ": last_read,
         "RATING": rating,
         "REVIEW": review
     }
@@ -76,9 +80,9 @@ async def add_record(ctx):
 
     await ctx.send("\nLibrary record added successfully.")
 
-@bot.command()
+@bot.command(name="search_record", description="Search for a library record")
 async def search_record(ctx, search_term):
-    print("\nYou chose to search for a library record\n")
+    print("\nYou chose to search for a library record. Which book title, author, genre (fiction, non-fiction, cooking), or year last read would you like to search for?\n")
 
     found_books = []
 
@@ -87,29 +91,30 @@ async def search_record(ctx, search_term):
             search_term.lower() in book_title.lower()
             or search_term.lower() in book["AUTHOR"].lower()
             or search_term.lower() in book["GENRE"].lower()
+            or search_term.lower() in book["LAST_READ"].lower()
         ):
             found_books.append(book)
 
     if found_books:
         response = "\nMatching library records found:"
         for book in found_books:
-            response += f"\n\nTitle: {book['TITLE']}\nAuthor: {book['AUTHOR']}\nGenre: {book['GENRE']}\nRating: {book['RATING']}\nReview: {book['REVIEW']}\n"
+            response += f"\n\nTitle: {book['TITLE']}\nAuthor: {book['AUTHOR']}\nGenre: {book['GENRE']}\nLast Read: {book['LAST_READ']}\nRating: {book['RATING']}\nReview: {book['REVIEW']}\n"
     else:
         response = "No matching library records found."
 
     await ctx.send(response)
 
-@bot.command()
+@bot.command(name="list_records", description="List all library books")
 async def list_records(ctx):
     print("\nYou chose to list all library books\n")
 
     response = ""
     for book_title, book in home_library.items():
-        response += f"Book title: {book_title}\nAuthor: {book['AUTHOR']}\nGenre: {book['GENRE']}\nRating: {book['RATING']}\nReview: {book['REVIEW']}\n\n"
+        response += f"Book title: {book_title}\nAuthor: {book['AUTHOR']}\nGenre: {book['GENRE']}\nLast Read: {book['LAST_READ']}\nRating: {book['RATING']}\nReview: {book['REVIEW']}\n\n"
 
     await ctx.send(response)
 
-@bot.command()
+@bot.command(name="update_record", description="Update a library record")
 async def update_record(ctx, book_title, update_choice, new_value):
     print("\nYou chose to update a library record\n")
 
@@ -123,8 +128,10 @@ async def update_record(ctx, book_title, update_choice, new_value):
         elif update_choice == "3":
             book["GENRE"] = new_value
         elif update_choice == "4":
-            book["RATING"] = new_value
+            book["LAST_READ"] = new_value
         elif update_choice == "5":
+            book["RATING"] = new_value
+        elif update_choice == "6":
             book["REVIEW"] = new_value
         else:
             await ctx.send("Invalid choice.")
@@ -135,7 +142,7 @@ async def update_record(ctx, book_title, update_choice, new_value):
     else:
         await ctx.send("Library record not found. Cannot update the record.")
 
-@bot.command()
+@bot.command(name="delete_record", description="Delete a library record")
 async def delete_record(ctx, library_record_to_delete):
     print("\nYou chose to delete a library record\n")
 
@@ -146,9 +153,6 @@ async def delete_record(ctx, library_record_to_delete):
     else:
         await ctx.send("Library record not found. Cannot delete the record.")
 
-@bot.command()
-async def exit_library(ctx):
-    await ctx.send("\nLeaving the library.")
-    await bot.close()
+# The "Exit library" function is surplus to requirement when we're using slash commands so I've removed it
 
 bot.run(BOT_TOKEN)
