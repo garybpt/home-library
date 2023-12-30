@@ -3,8 +3,9 @@ import os
 
 # Function to save the home library to a JSON file
 def save_json(home_library):
+    sorted_home_library = dict(sorted(home_library.items()))
     with open(LIBRARY_RECORD, "w") as file:
-        json.dump(home_library, file, indent=4)
+        json.dump(sorted_home_library, file, indent=4, sort_keys=True)
 
 # Function to load the home library from a JSON file
 def open_json():
@@ -52,14 +53,14 @@ while True:
     elif choice == "2": # Search for a library record
         print("\nYou chose to search for a library record\n")
 
-        book_title = input("Enter book title to search: ")
+        book_title = input("Enter book title to search the library: ")
 
         if book_title in home_library:
             book = home_library[book_title]
-            print("Title:", book_title["TITLE"])
-            print("Author:", author["AUTHOR"])
-            print("Rating:", rating["RATING"])
-            print("Review:", review["REVIEW"])
+            print("Title:", book["TITLE"])
+            print("Author:", book["AUTHOR"])
+            print("Rating:", book["RATING"])
+            print("Review:", book["REVIEW"])
         else:
             print("Library record not found.")
 
@@ -67,7 +68,11 @@ while True:
         print("\nYou chose to list all library books\n")
 
         for book_title, book in home_library.items():
-            print(f"Title: {book_title}, Author: {author['AUTHOR']}, Rating: {rating['RATING']}, Review: {review['REVIEW']}")
+            print(f"Book title: {book_title}")
+            print(f"Author: {book['AUTHOR']}")
+            print(f"Rating: {book['RATING']}")
+            print(f"Review: {book['REVIEW']}")
+            print()  # Add an empty line between each book
 
     elif choice == "4": # Update library record
         print("\nYou chose to update a library record\n")
@@ -115,7 +120,7 @@ while True:
             print("Library record not found. Cannot delete the record.")
 
     elif choice == "6": # Exit
-        print("\nExiting the program.")
+        print("\nLeaving the library.")
         break
 
     else:
