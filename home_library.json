@@ -12,5 +12,12 @@
         "RATING": "Not Read",
         "REVIEW": "Not Read",
         "TITLE": "Chimp Paradox"
+    },
+    "The Tucci Cookbook": {
+        "AUTHOR": "Stanley Tucci",
+        "GENRE": "Cooking",
+        "RATING": "Not Read",
+        "REVIEW": "Not Read",
+        "TITLE": "The Tucci Cookbook"
     }
 }

@@ -82,7 +82,7 @@ while True:
                 print("Genre:", book["GENRE"])
                 print("Rating:", book["RATING"])
                 print("Review:", book["REVIEW"])
-                print()
+                print() # Add an empty line between each book
         else:
             print("No matching library records found.")
 
@@ -95,7 +95,7 @@ while True:
             print(f"Genre: {book['GENRE']}")
             print(f"Rating: {book['RATING']}")
             print(f"Review: {book['REVIEW']}")
-            print()  # Add an empty line between each book
+            print() # Add an empty line between each book
 
     elif choice == "4": # Update library record
         print("\nYou chose to update a library record\n")
