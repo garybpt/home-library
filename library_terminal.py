@@ -43,10 +43,10 @@ while True:
             last_read = input("\nYear last read: ")
             rating = input("\nEnter your rating out of 5*: ")
             review = input("Enter your review: ")
-        else: # Auto-fill with holding entry for not read
-            last_read = "Not Read"
-            rating = "Not Read"
-            review = "Not Read"
+        else: # Auto-fill with holding entry if not applicable
+            last_read = "N/A"
+            rating = "N/A"
+            review = "N/A"
 
         book = {
             "TITLE": book_title,
