@@ -82,7 +82,7 @@ async def add_record(ctx):
 
 @bot.command(name="search_record", description="Search for a library record")
 async def search_record(ctx, search_term):
-    print("\nYou chose to search for a library record. Which book title, author, genre (fiction, non-fiction, cooking), or year last read would you like to search for?\n")
+    print("\nWhich book title, author, genre (fiction, non-fiction, cooking), or year last read would you like to search for?\n")
 
     found_books = []
 
