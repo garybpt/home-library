@@ -7,8 +7,9 @@ from dotenv import load_dotenv
 # Load environment variables from .env
 load_dotenv()
 
-# Get the bot token from the environment variables
+# Get the bot token and server ID from the environment variables
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+SERVER_ID = int(os.getenv("SERVER_ID"))
 
 # Function to save the home library to a JSON file in alphabetical order
 def save_json(home_library):
@@ -46,6 +47,13 @@ bot = commands.Bot(command_prefix='/', intents=intents)
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
+
+@bot.event
+async def on_message(message):
+    # Check if the message is from the specified server
+    if message.guild and message.guild.id == SERVER_ID:
+        # Process commands only if the message is from the specified server
+        await bot.process_commands(message)
 
 @bot.command(name="add_record", description="Add a new library record")
 async def add_record(ctx):
