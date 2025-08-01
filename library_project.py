@@ -58,3 +58,83 @@ class LibraryManager:
                 self.print_record(book)
         else:
             print('No matching library books found.')
+
+    def list_records(self):
+        print('\nYou chose to list all library books\m')
+        for book in self.library.values():
+            self.print_record(book)
+
+    def update_record(self):
+        print('\nYou chose to update a library book\n')
+        title = input('Enter the book title to update: ')
+
+        if title not in self.library:
+            print('Library book not found.')
+            return
+        
+        book = self.library[title]
+        print('1. Book Title\n2. Author\n3. Genre\n4. Last Read\n5. Rating\n6. Review')
+        field_map = {
+            '1': 'TITLE',
+            '2': 'AUTHOR',
+            '3': 'GENRE',
+            '4': 'LAST_READ',
+            '5': 'RATING',
+            '6': 'REVIEW'
+        }
+        choice = input('Enter your choice: ')
+        field = field_map.get(choice)
+
+        if not field:
+            print('Invalid choice.')
+            return
+        new_value = input(f"Enter new value for {field.replace('_', ' ').title()}: ")
+        book[field] = new_value
+        if field == 'TITLE':
+            self.library[new_value] = self.library.pop(title)
+            self.save_library()
+            print('Library book updated successfully.')
+
+    def delete_record(self):
+        print('\nYou chose to delete a library book\n')
+        title = input('Enter the book title to delete: ')
+
+        if title in self.library:
+            del self.library[title]
+            self.save_library()
+            print(f'Library book, {title}, has been deleted.')
+        else:
+            print('Library book not found.')
+        
+    def print_record(self, book):
+        print(f"\nTitle: {book['TITLE']}")
+        print(f"Author: {book['AUTHOR']}")
+        print(f"Genre: {book['GENRE']}")
+        print(f"Last Read: {book['LAST_READ']}")
+        print(f"Rating: {book['RATING']}")
+        print(f"Review: {book['REVIEW']}\n")
+
+    def run(self):
+        while True:
+            print('\nWelcome to your home library. \n')
+            print('1. Add a library book\n2. Search for a library book\n3. List all library books\n4. Update a library book\n5. Delete a library book\n')
+
+            choice = input('Please select an option: ')
+
+            if choice == '1':
+                self.add_record
+            elif choice == '2':
+                self.search_records
+            elif choice == '3':
+                self.list_records
+            elif choice == '4':
+                self.update_record
+            elif choice == '5':
+                self.delete_record
+            else:
+                print('Please select a valid option')
+        
+if __name__ == '__main__':
+    LIBRARY_RECORD = "/Users/garybutterfield/GitHub/home-library/home_library.json"
+    manager = LibraryManager(LIBRARY_RECORD)
+    manager.run()
